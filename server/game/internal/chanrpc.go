@@ -1,7 +1,6 @@
 package internal
 
 import (
-	"fmt"
 	"my-world/server/msg"
 
 	"github.com/name5566/leaf/gate"
@@ -9,22 +8,8 @@ import (
 )
 
 func init() {
-	skeleton.RegisterChanRPC("NewAgent", rpcNewAgent)
-	skeleton.RegisterChanRPC("CloseAgent", rpcCloseAgent)
 	skeleton.RegisterChanRPC("UserLogin", rpcUserLogin)
-	skeleton.RegisterChanRPC("CreatePlayer", rpcCreatePlayer)
-}
-
-func rpcNewAgent(args []interface{}) {
-	fmt.Println("rpcNewAgent")
-	a := args[0].(gate.Agent)
-	_ = a
-}
-
-func rpcCloseAgent(args []interface{}) {
-	fmt.Println("rpcCloseAgent")
-	a := args[0].(gate.Agent)
-	_ = a
+	skeleton.RegisterChanRPC("CreateRole", rpcCreatePlayer)
 }
 
 func rpcUserLogin(args []interface{}) {

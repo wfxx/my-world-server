@@ -1,0 +1,76 @@
+syntax = "proto3";
+package myworld;
+
+option go_package=".";
+
+// 角色状态机形态
+enum RoleStatus {
+    idle = 0;
+    walk = 1;
+    run = 2;
+    jump = 3;
+    crouch = 4;
+    climb = 5;
+    deathb = 6;
+    deathf = 7;
+}
+
+// 角色方向
+enum RoleDirction {
+    up = 0;
+    down = 1;
+    left = 2;
+    right = 4;
+}
+
+// buff类型
+enum BuffType {
+    harm = 0; // 持续伤害，
+    repair = 1; // 持续恢复
+    speed = 2; // 改变角色速度
+    cool = 3; // 改变技能冷却
+
+}
+
+// 玩家属性
+message RoleInfo {
+    int32 lv = 1;
+    int32 exp = 2;
+    int32 hp = 3;
+    int32 mp = 4;
+    int32 atk = 5;
+    int32 def = 6;
+}
+
+message RoleData {
+    int64 id = 1;
+    float x = 2;
+    float y = 3;
+    RoleStatus status = 4;
+    RoleDirction dirct = 5;
+    RoleInfo info = 6;
+}
+
+message BuffData {
+    int32 id = 1;
+}
+
+message GameFrameData {
+    repeated RoleData roles = 1;
+    repeated RoleData npcs = 2;
+}
+
+// 释放技能
+message UserSkillRequest {
+    int32 skillid = 1;
+}
+
+message UserSkillResponse {
+    bool issuccess = 1;
+    string tips = 2;
+}
+
+// 释放的技能如果挂buff，或者buff失效
+message UserBuffBoard {
+
+}

@@ -1,0 +1,44 @@
+syntax = "proto3";
+package myworld;
+
+option go_package=".";
+ 
+// 账户类型
+enum AccountType {
+    tourist = 0;
+    telephone = 1;
+    wechat = 2;
+}
+
+// 注册
+message RegisterRequest {
+    AccountType type = 1;
+    string username = 2;
+    string password = 3;
+}
+
+message RegisterResponse {
+    bool issuccess = 1;
+    string tips = 2;
+}
+
+// 登录
+message LoginRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message LoginResponse {
+    bool issuccess = 1;
+    string tips = 2;
+}
+
+// 退出
+message ExitRequest {
+    string username = 1;
+    string password = 2;
+}
+message ExitResponse {
+    bool issuccess = 1;
+    string tips = 2;
+}

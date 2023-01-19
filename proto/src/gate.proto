@@ -1,0 +1,37 @@
+syntax = "proto3";
+package myworld;
+
+option go_package=".";
+enum UserStatus {
+    // 离线
+    offline = 0;
+    // 在线
+    online = 1;
+    // 副本中
+    ingame = 2;
+    // 聊天中
+    inchat = 3;
+}
+
+// 心跳包
+message HeartRequest {
+
+}
+message HeartResponse {
+
+}
+
+// 重连，除副本外，直接拉回游戏服，
+message ReconnextRequest {
+
+}
+message ReconnectResponse {
+    UserStatus status = 1;
+    int64 gameid = 2;
+}
+
+// 强制修改玩家状态，强踢/强拉等
+message ChangeUserStatus {
+    UserStatus status = 1;
+    int64 gameid = 2;
+}

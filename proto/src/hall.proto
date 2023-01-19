@@ -1,0 +1,77 @@
+syntax = "proto3";
+package myworld;
+
+option go_package=".";
+ 
+message UserPosition {
+    string map = 1;
+    float x = 2;
+    float y = 3;
+}
+
+message UserInfo {
+    string nick = 1;    // 昵称
+    string head = 2;    // 头像
+    int64 birth = 3;    // 生日
+    int64 phone = 4;    // 手机
+    string address = 5; // 住址
+}
+
+message UserAvatar {
+    string avatar = 1;  // 装扮，后面要拆分
+}
+
+// 用户数据
+message UserData {
+    int64 id = 1;
+    UserInfo info = 2;
+    UserAvatar avatar = 3;
+    UserPosition pos = 4;
+}
+
+// 每0.1s合并一次数据，通过frameData发给客户端
+message HallFrameData {
+    UserData self = 1;
+    repeated UserData others = 2;
+}
+
+// 用户进入游戏
+message UserEnterRequest {
+
+}
+
+message UserEnterResponse {
+    UserData self = 1;
+    repeated UserData others = 2;
+}
+
+// 用户移动
+message UserMoveRequest {
+     
+}
+
+message UserMoveResponse {
+    bool issuccess = 1;
+    string tips = 2;
+}
+
+// 修改用户基础信息
+message ChangeUserInfoRequest {
+    UserInfo info = 1;
+}
+
+message ChangeUserInfoResponse {
+    bool issuccess = 1;
+    string tips = 2;
+}
+
+// 修改用户装扮
+message ChangeUserAvatarRequest {
+    string avatar = 1;
+}
+
+message ChangeUserAvatarResponse {
+    bool issuccess = 1;
+    string tips = 2;
+    string avatar = 3;
+}

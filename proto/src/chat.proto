@@ -1,0 +1,46 @@
+syntax = "proto3";
+package myworld;
+
+option go_package=".";
+
+enum ChatType {
+    // 私聊
+    Single = 0;
+    // 群聊
+    Group = 1;
+    // 全服
+    ALL = 2;
+    // 邮件
+    Email = 3;
+}
+
+// 不存在相同的用户id和群id，系统id为0
+message GetMessageBoard {
+    int64 mid = 1;
+    int64 fromid = 2;
+    ChatType type = 3;
+    string content = 4;
+    int64 groupid = 5;
+}
+
+// 发送消息,mid不为0时，表示引用该消息
+message UserChatRequest {
+    int64 toid = 1;
+    string content = 2;
+}
+
+// 只表示是否成功发送消息
+message UserChatResponse {
+    bool issuccess = 1;
+    string tips = 2;
+}
+
+// 屏蔽用户
+message ShieldChatRequest {
+    int64 shieldID = 1;
+}
+
+message ShieldChatResponese {
+    bool issuccess = 1;
+    string tips = 2;
+}

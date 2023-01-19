@@ -1,9 +1,11 @@
 package main
 
 import (
+	"my-world/server/chat"
 	"my-world/server/conf"
 	"my-world/server/game"
 	"my-world/server/gate"
+	"my-world/server/hall"
 	"my-world/server/login"
 	"my-world/server/mysql"
 
@@ -25,7 +27,9 @@ func main() {
 	// fmt.Println(testData.Name)
 
 	leaf.Run(
+		chat.Module,
 		game.Module,
+		hall.Module,
 		gate.Module,
 		login.Module,
 	)
